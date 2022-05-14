@@ -1,0 +1,357 @@
+\documentclass[a3paper, 10pt]{article}
+
+\usepackage[top=1mm,bottom=1mm,left=1mm,right=1mm]{geometry}
+\usepackage{amsmath}
+\usepackage{pdflscape}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{braket}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{listings}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{tabu}
+\usepackage{titlesec}
+\usepackage{multicol}
+\usepackage[document]{ragged2e}
+\usepackage{dot2texi} \usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning}
+
+\usepackage[scaled]{helvet}
+\renewcommand\familydefault{\sfdefault}
+\usepackage{sourcecodepro}
+
+\usepackage[bookmarksopen=true, ]{hyperref}
+\usepackage{bookmark}
+\bookmarksetup{numbered}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\titlespacing*{\subparagraph}{10pt}{0pt}{5pt}
+\allowdisplaybreaks
+
+\lstset{%
+	basicstyle = \ttfamily,
+	breaklines = true,
+	tabsize = 2
+}
+
+\def\PartialS#1{ \frac{\partial}{\partial #1}}
+\def\Partial#1#2{ \frac{\partial #1}{\partial #2}}
+\def\PartialSq#1#2{ \frac{\partial^2 #1}{{\partial #2}^2}}
+\def\PartialMul#1#2#3{ \frac{\partial^2 #1}{\partial #2 \partial #3}}
+\def\Par#1{ { \left( {#1} \right)} }
+\def\Brac#1{ { \left[ {#1} \right]} }
+\def\Set#1{ { \left\{ {#1} \right\} } }
+\def\Ang#1{ { \left\langle {#1} \right\rangle } }
+\def\HalfOpen#1{ { \left[ {#1} \right) } }
+\def\HalfClosed#1{ { \left( {#1} \right] } }
+\def\Conj#1{ \overline{#1} }
+\def\ddx{{\frac{\mathrm{d}}{\dx}}}
+\def\ddy{{\frac{\mathrm{d}}{\dy}}}
+\def\dda{{\frac{\mathrm{d}}{\da}}}
+\def\ddt{{\frac{\mathrm{d}}{\dt}}}
+\def\dndx#1{{\frac{\mathrm d^#1}{\mathrm dx^#1}}}
+\def\dndt#1{{\frac{\mathrm d^#1}{\mathrm dt^#1}}}
+\def\dd#1{{\frac{\mathrm d}{\mathrm d #1}}}
+\def\ddd#1#2{{\frac{\mathrm d #1}{\mathrm d #2}}}
+\def\Abs#1{{ \left| #1 \right|}}
+\def\Ceil#1{{ \left\lceil #1 \right\rceil }}
+\def\Floor#1{{ \left\lfloor #1 \right\rfloor }}
+\def\Lim#1#2{ \lim_{#1 \to #2} }
+\def\LimInf#1{ \lim_{#1 \to \infty} }
+\def\Seq#1{ \Set{{#1}_n}_{n=1}^\infty}
+\def\Norm#1{ \left\lVert #1 \right\rVert}
+\def\Inv#1{ {#1}^{-1} }
+\def\Pinv#1{ {\Par{#1}}^{-1} }
+\def\siff{\leftrightarrow}
+\def\nsiff{\nleftrightarrow}
+\def\iv{\mathbf i}
+\def\jv{\mathbf j}
+\def\kv{\mathbf k}
+\def\wv{\mathbf w}
+\def\av{\mathbf a}
+\def\bv{\mathbf b}
+\def\cv{\mathbf c}
+\def\xv{\mathbf x}
+\def\yv{\mathbf y}
+\def\zv{\mathbf z}
+\def\Xv{\mathbf X}
+\def\Yv{\mathbf Y}
+\def\Zv{\mathbf Z}
+\def\uv{\mathbf u}
+\def\vv{\mathbf v}
+\def\betav{\pmb\beta}
+\def\epsv{\pmb\epsilon}
+\def\dx{\mathrm d x}
+\def\dy{\mathrm d y}
+\def\dz{\mathrm d z}
+\def\dt{\mathrm d t}
+\def\du{\mathrm d u}
+\def\dv{\mathrm d v}
+\def\da{\mathrm d a}
+\def\dm{\mathrm d m}
+\def\LhopInf{\Brac{\frac \infty \infty}}
+\def\LhopZero{\Brac{\frac00}}
+\def\N{\mathbb N}
+\def\Z{\mathbb Z}
+\def\nonNegZ{\Z \cup \{0\}}
+\def\Q{\mathbb Q}
+\def\R{\mathbb R}
+\def\C{\mathbb C}
+\def\notQ{\R \setminus \Q}
+\def\Px{p_{{}_X}}
+\def\Py{p_{{}_Y}}
+\def\Pz{p_{{}_Z}}
+\def\Fx{f_{{}_X}}
+\def\Fy{f_{{}_Y}}
+\def\Fz{f_{{}_Z}}
+\def\Ind#1{\mathbf{1}_{\{#1\}}}
+\def\op#1{\operatorname{#1}}
+\def\Mod#1{ \Par{\operatorname{mod} #1} }
+\def\cis#1{ \operatorname{cis} \left(#1\right) }
+\def\pr#1{\op{Pr}\Par{#1}}
+\def\legendre#1#2{ \Par{\frac{#1}{#2}} }
+\def\conj#1{\overline{#1}}
+\def\E{\mathbb E}
+\def\Var{\mathrm{Var}}
+\def\Cov{\mathrm{Cov}}
+\def\Det#1 { \left|
+\begin{matrix}
+	#1 \end{matrix} \right| }
+\def\Mat#1 { \left[
+	\begin{matrix}
+		#1
+	\end{matrix}
+	\right] }
+\def\Matrx#1 { \left[
+	\begin{matrix}
+		#1
+	\end{matrix}
+	\right] }
+
+\definecolor{llgray}{rgb}{0.9,0.9,0.9}
+\definecolor{llred}{rgb}{0.9,0.7,0.7}
+\definecolor{llgreen}{rgb}{0.7,0.9,0.7}
+\definecolor{llblue}{rgb}{0.85,0.85,0.95}
+
+\theoremstyle{definition}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{axiom}{Axiom}
+\newtheorem*{pro}{Proposition}
+\newtheorem*{corol}{Corollary}
+
+\newtheorem*{defin}{Definition}
+
+\newenvironment{cdefin}[1][]{
+	\begin{minipage}{\textwidth}
+		\belowpdfbookmark{Def: #1}{Def: #1}
+		\begin{mdframed}[backgroundcolor=white]
+			\begin{defin}[#1]
+				}{
+			\end{defin}
+		\end{mdframed}
+	\end{minipage}
+}
+
+\newenvironment{cthm}[1][]{
+	\begin{minipage}{\textwidth}
+		\belowpdfbookmark{Def: #1}{Def: #1}
+		\begin{mdframed}[backgroundcolor=white]
+			\begin{theorem}[#1]
+				}{
+			\end{theorem}
+		\end{mdframed}
+	\end{minipage}
+}
+
+\newtheorem*{qst}{Question}
+\newtheorem*{example}{Example}
+\newtheorem*{mdremark}{Remark}
+\newenvironment{remark}
+{
+	\begin{minipage}{\textwidth}
+		\begin{mdframed}[backgroundcolor=white]
+			\begin{mdremark}
+				}{
+			\end{mdremark}
+		\end{mdframed}
+	\end{minipage}
+}
+
+\newtheorem*{mdctrex}{Counter-example}
+\newenvironment{ctrex}%
+{
+	\begin{minipage}{\textwidth}
+		\begin{mdframed}[backgroundcolor=white]
+			\begin{mdctrex}
+			}%
+			{
+			\end{mdctrex}
+		\end{mdframed}
+	\end{minipage}
+}
+
+\makeatletter
+\providecommand*{\cupdot}{%
+  \mathbin{%
+    \mathpalette\@cupdot{}%
+  }%
+}
+\newcommand*{\@cupdot}[2]{%
+  \ooalign{%
+    $\m@th#1\cup$\cr
+    \sbox0{$#1\cup$}%
+    \dimen@=\ht0 %
+    \sbox0{$\m@th#1\cdot$}%
+    \advance\dimen@ by -\ht0 %
+    \dimen@=.5\dimen@
+    \hidewidth\raise\dimen@\box0\hidewidth
+  }%
+}
+
+\providecommand*{\bigcupdot}{%
+  \mathop{%
+    \vphantom{\bigcup}%
+    \mathpalette\@bigcupdot{}%
+  }%
+}
+\newcommand*{\@bigcupdot}[2]{%
+  \ooalign{%
+    $\m@th#1\bigcup$\cr
+    \sbox0{$#1\bigcup$}%
+    \dimen@=\ht0 %
+    \advance\dimen@ by -\dp0 %
+    \sbox0{\scalebox{2}{$\m@th#1\cdot$}}%
+    \advance\dimen@ by -\ht0 %
+    \dimen@=.5\dimen@
+    \hidewidth\raise\dimen@\box0\hidewidth
+  }%
+}
+\makeatother
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+% \DeclareMathOperator*{\liminf}{lim\,inf}
+% \DeclareMathOperator*{\limsup}{lim\,sup}
+
+\begin{document}
+\begin{align*}
+	\int \frac{\dx}{a \Par{p+x}^2 + 1}
+	&= \frac1{\sqrt a} \int \frac{\mathrm d \sqrt a (p + x)}{\Par{\sqrt a (p+x)}^2 + 1} \\
+	&= \frac1{\sqrt a} \arctan(\sqrt a (p + x)) + \text{constant} \\
+	\\
+	\int \frac{\dx}{a \Par{p + x}^2 + b (q + x)^2 + c (r + x)^2+ 1}
+	&= \int \frac{\dx}{
+		(a+b+c) (D + x)^2 + F + 1
+	} \\
+	&= \int \frac{\dx}{
+		\frac{a+b+c}{F+1} (D + x)^2 + 1
+	} \\
+	&= \sqrt{\frac{F+1}{a+b+c}} \arctan\Par{
+		\sqrt{\frac{a+b+c}{F+1}} (D + x)
+	} + \text{constant} \\
+	&=: \frac1R \arctan(R(D+x)) + \text{constant} \\
+	\int_0^1 \frac{\dx}{(a+b+c) (D + x)^2 + F + 1}
+	&= \frac{\arctan\Par{(D+1) R} - \arctan(DR)}R
+\end{align*}
+
+where $D$, $F$ are given by
+
+\begin{align*}
+	a(p+x)^2 + b(q+x)^2 + c(r+x)^2
+	&= ap^2 + 2apx + ax^2 + bq^2 + 2bqx + bx^2 + cr^2 + 2crx + cx^2 \\
+	&= (a+b+c)x^2 + 2(ap + bq + cr)x + ap^2 + bq^2 + cr^2 \\
+	&= (a+b+c) \Par{
+		x^2
+		+ 2 \frac{ap + bq + cr}{a + b + c}x
+		+ \frac{ap^2 + bq^2 + cr^2}{a + b + c}
+	} \\
+	&= (a+b+c) \Par{
+		x^2
+		+ 2 \frac{ap + bq + cr}{a + b + c}x
+		+ \Par{\frac{ap + bq + cr}{a + b + c}}^2
+		- \Par{\frac{ap + bq + cr}{a + b + c}}^2
+		+ \frac{ap^2 + bq^2 + cr^2}{a + b + c}
+	} \\
+	&= (a+b+c) \Par{
+		\Par{x + \frac{ap + bq + cr}{a+b+c}}^2
+		+ \frac{
+			(a+b+c) \Par{ap^2 + bq^2 + cr^2}
+			- (ap + bq + cr)^2
+		}{(a+b+c)^2}
+	} \\
+	&= (a+b+c) \Par{
+		\Par{x + \frac{ap + bq + cr}{a+b+c}}^2
+		+ \frac{
+			(a+b+c) \Par{ap^2 + bq^2 + cr^2}
+			- a^2 p^2 - b^2 q^2 - c^2 r^2
+			- 2abpq - 2acpr - 2bcqr
+		}{(a+b+c)^2}
+	} \\
+	&= (a+b+c) \Par{
+		\Par{x + \frac{ap + bq + cr}{a+b+c}}^2
+		+ \frac{
+			a^2p^2 + abq^2 + acr^2
+			+ abp^2 + b^2q^2 + cbr^2
+			+ acp^2 + bcq^2 + c^2r^2
+			- a^2 p^2 - b^2 q^2 - c^2 r^2
+			- 2abpq - 2acpr - 2bcqr
+		}{(a+b+c)^2}
+	} \\
+	&= (a+b+c) \Par{
+		\Par{x + \frac{ap + bq + cr}{a+b+c}}^2
+		+ \frac{
+			abq^2 + acr^2
+			+ abp^2 + cbr^2
+			+ acp^2 + bcq^2
+			- 2abpq - 2acpr - 2bcqr
+		}{(a+b+c)^2}
+	} \\
+	&= (a+b+c) \Par{
+		\Par{x + \frac{ap + bq + cr}{a+b+c}}^2
+		+ \frac{
+			ab \Par{ p^2 + q^2 - 2pq }
+			+ ac \Par{ p^2 + r^2 - 2pr }
+			+ bc \Par{ q^2 + r^2 - 2qr }
+		}{(a+b+c)^2}
+	} \\
+	&=: (a+b+c) \Par{ (x+D)^2 + F }
+\end{align*}
+
+Conclusion:
+
+$$ \int_0^1 \frac k{
+	\sum_{i=1}^3 s_i \Par{ P_{i3} h + P_{i1}u + P_{i2}v + P_{i4} }^2
+	+ 1
+} \mathrm dh = \frac kR \Par{ \arctan((D+1)R) - \arctan(DR) } $$
+
+where
+\begin{align*}
+	C_i &= P_{i1}u + P_{i2}v + P_{i4} - b_i \\
+	D &= \frac{\sum_{i=1}^3 s_i C_i}{\sum_{i=1}^3 s_i P_{i3}} \\
+	F &= \frac1{\Par{\sum_{i=1}^3 s_i P_{i3}}^2}
+	\sum_{(i,j) = (1,2), (1,3), (2,3)} P_{i3}P_{j3}
+	s_is_j \Par{\frac{C_i}{P_{i3}} - \frac{C_j}{P_{j3}}}^2 \\
+	R &= \sqrt{\frac{s_1 + s_2 + s_3}{F + 1}}
+\end{align*}
+
+with the parameters:
+
+\begin{itemize}
+	\item $P_{ij}$ is the inverse of the perspective matrix (from view space to world)
+	\item $k$ is the magnitude of a signal
+	\item $s_i$ is the scale of a signal
+	\item $b_i$ is the center of a signal
+	\item $u$, $v$ are the screen coordinates of a pixel
+\end{itemize}
+
+where each signal is
+
+$$ f(x, y, z) = \frac k{s_1 (x - b_1)^2 + s_2 (y - b_2)^2 + s_3 (z - b_3)^2 + 1} $$
+
+\end{document}

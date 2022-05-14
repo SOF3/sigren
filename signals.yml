@@ -1,0 +1,6 @@
+- magnitude: 10
+  center: [10, 0, -23]
+  scale: [1, 1, 1]
+- magnitude: 20
+  center: [0, 0, -5]
+  scale: [1, 1, 1]
